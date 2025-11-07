@@ -1,6 +1,7 @@
+/// <reference lib="deno.unstable" />
+
 import { Bot } from "@gramio/core";
 import { Scene, scenes } from "@gramio/scenes";
-import { z } from "@zod/zod";
 
 // Сцена для основного взаимодействия
 const mainScene = new Scene("main")
@@ -25,23 +26,30 @@ const mainScene = new Scene("main")
       userName: context.text,
     });
   })
-  .ask(
-    "userAge",
-    z.coerce.number().min(1).max(100),
-    "Сколько вам лет?",
-  )
+  .step("message", (context) => {
+    const age = parseInt(context.text || "0");
+    if (isNaN(age) || age < 1 || age > 100) {
+      return context.send("Пожалуйста, введите корректный возраст (1-100 лет)");
+    }
+
+    return context.scene.update({
+      userAge: age,
+    });
+  })
   .step("message", async (context) => {
     await context.send(
       `Приятно познакомиться! Вас зовут ${context.scene.state.userName}, вам ${context.scene.state.userAge} лет.`,
     );
 
     // Сохраняем данные в Deno KV
-    const kv = await Deno.openKv();
-    await kv.set(["users", context.from.id], {
-      name: context.scene.state.userName,
-      age: context.scene.state.userAge,
-      registered: new Date().toISOString(),
-    });
+    if (context.from) {
+      const kv = await Deno.openKv();
+      await kv.set(["users", context.from.id], {
+        name: context.scene.state.userName,
+        age: context.scene.state.userAge,
+        registered: new Date().toISOString(),
+      });
+    }
 
     return context.scene.exit();
   });
@@ -51,11 +59,5 @@ export const bot = new Bot(Deno.env.get("TELEGRAM_BOT_TOKEN")!)
   .extend(scenes([mainScene]))
   .command("start", (context) => context.scene.enter(mainScene))
   .command("menu", (context) => {
-    return context.setChatMenuButton({
-      menu_button: {
-        type: "web_app",
-        text: "Открыть MiniApp",
-        web_app: { url: "https://konung.deno.dev" },
-      },
-    });
+    return context.send("Меню недоступно в текущей версии бота.");
   });
