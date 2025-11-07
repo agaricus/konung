@@ -2,10 +2,12 @@
   "nodeModulesDir": "manual",
   "tasks": {
     "check": "deno fmt --check . && deno lint . && deno check",
-    "dev": "vite",
+    "dev": "deno run -A --unstable-kv npm:vite",
     "build": "vite build",
     "start": "deno serve -A _fresh/server.js",
-    "update": "deno run -A -r jsr:@fresh/update ."
+    "update": "deno run -A -r jsr:@fresh/update .",
+    "deploy": "deno deploy --project=konung",
+    "set-webhook": "deno run -A --env-file setup_webhook.ts"
   },
   "lint": {
     "rules": {
@@ -22,6 +24,7 @@
     "@/": "./",
     "@gramio/core": "jsr:@gramio/core@^0.1.5",
     "@gramio/scenes": "jsr:@gramio/scenes@^0.3.4",
+    "@zod/zod": "jsr:@zod/zod@^4.1.12",
     "fresh": "jsr:@fresh/core@^2.1.4",
     "preact": "npm:preact@^10.27.2",
     "@preact/signals": "npm:@preact/signals@^2.3.2",
@@ -35,7 +38,8 @@
       "dom",
       "dom.asynciterable",
       "dom.iterable",
-      "deno.ns"
+      "deno.ns",
+      "deno.unstable"
     ],
     "jsx": "precompile",
     "jsxImportSource": "preact",
