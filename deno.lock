@@ -16,6 +16,8 @@
     "jsr:@gramio/format@~0.1.3": "0.1.5",
     "jsr:@gramio/keyboards@~0.3.3": "0.3.3",
     "jsr:@gramio/scenes@~0.3.4": "0.3.4",
+    "jsr:@gramio/types@^7.10.0": "7.11.0",
+    "jsr:@gramio/types@^7.3.4": "7.11.0",
     "jsr:@std/bytes@^1.0.6": "1.0.6",
     "jsr:@std/dotenv@~0.225.5": "0.225.5",
     "jsr:@std/encoding@^1.0.10": "1.0.10",
@@ -42,9 +44,9 @@
     "npm:@preact/signals@^2.2.1": "2.3.2_preact@10.27.2",
     "npm:@preact/signals@^2.3.2": "2.3.2_preact@10.27.2",
     "npm:@prefresh/vite@^2.4.8": "2.4.11_preact@10.27.2_vite@7.2.1__@types+node@24.2.0__picomatch@4.0.3_@types+node@24.2.0",
+    "npm:@standard-schema/spec@1": "1.0.0",
     "npm:@tailwindcss/vite@^4.1.12": "4.1.16_vite@7.2.1__@types+node@24.2.0__picomatch@4.0.3_@types+node@24.2.0",
     "npm:@types/node@*": "24.2.0",
-    "npm:debug@^4.3.5": "4.4.3",
     "npm:esbuild-wasm@~0.25.11": "0.25.12",
     "npm:esbuild@0.25.7": "0.25.7",
     "npm:esbuild@~0.25.5": "0.25.7",
@@ -123,6 +125,7 @@
     "@gramio/contexts@0.0.23": {
       "integrity": "b7aa1f3bbbed207054c2b1d1a603f98233abbf9d1f6109862795a42d6ebe85ae",
       "dependencies": [
+        "jsr:@gramio/types@^7.10.0",
         "npm:inspectable"
       ]
     },
@@ -134,27 +137,40 @@
         "jsr:@gramio/files",
         "jsr:@gramio/format",
         "jsr:@gramio/keyboards",
-        "npm:debug",
+        "jsr:@gramio/types@^7.10.0",
         "npm:inspectable",
         "npm:middleware-io"
       ]
     },
     "@gramio/files@0.0.10": {
-      "integrity": "9dc6d593a4857e2c0d051c857a119590584fe80b531713c5038910e6e2a88191"
+      "integrity": "9dc6d593a4857e2c0d051c857a119590584fe80b531713c5038910e6e2a88191",
+      "dependencies": [
+        "jsr:@gramio/types@^7.3.4"
+      ]
     },
     "@gramio/format@0.1.5": {
-      "integrity": "1cc7d69d0ab96c8733935ffa1e6769642c3de6c810a00c170796573cec6eb38f"
+      "integrity": "1cc7d69d0ab96c8733935ffa1e6769642c3de6c810a00c170796573cec6eb38f",
+      "dependencies": [
+        "jsr:@gramio/types@^7.3.4"
+      ]
     },
     "@gramio/keyboards@0.3.3": {
-      "integrity": "4393bd03edadb453f8c570cc6fb561f83c0745a20a45fa4b3a1acf296e6af43c"
+      "integrity": "4393bd03edadb453f8c570cc6fb561f83c0745a20a45fa4b3a1acf296e6af43c",
+      "dependencies": [
+        "jsr:@gramio/types@^7.3.4"
+      ]
     },
     "@gramio/scenes@0.3.4": {
       "integrity": "f5ad6ba3afc8cfb875cfc20cadf3440b070ecdcf615abc67d643b42c28dcb9db",
       "dependencies": [
         "jsr:@gramio/core@~0.1.3",
         "npm:@gramio/storage",
+        "npm:@standard-schema/spec",
         "npm:middleware-io"
       ]
+    },
+    "@gramio/types@7.11.0": {
+      "integrity": "583513dd8ebf165efd18f5f7169932f4955b4128721fd9989e77f0dda608ae8c"
     },
     "@std/bytes@1.0.6": {
       "integrity": "f6ac6adbd8ccd99314045f5703e23af0a68d7f7e58364b47d2c7f408aeb5820a"
@@ -715,6 +731,9 @@
       "integrity": "sha512-TAcgQh2sSkykPRWLrdyy2AiceMckNf5loITqXxFI5VuQjS5tSuw3WlwdN8qv8vzjLAUTvYaH/mVjSFpbkFbpTg==",
       "os": ["win32"],
       "cpu": ["x64"]
+    },
+    "@standard-schema/spec@1.0.0": {
+      "integrity": "sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA=="
     },
     "@tailwindcss/node@4.1.16": {
       "integrity": "sha512-BX5iaSsloNuvKNHRN3k2RcCuTEgASTo77mofW0vmeHkfrDWaoFAFvNHpEgtu0eqyypcyiBkDWzSMxJhp3AUVcw==",

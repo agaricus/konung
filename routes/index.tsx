@@ -2,11 +2,12 @@ import { useSignal } from "@preact/signals";
 import { Head } from "fresh/runtime";
 import { define } from "@/utils.ts";
 import Counter from "@/islands/Counter.tsx";
+import UserProfile from "@/islands/UserProfile.tsx";
 
 export default define.page(function Home(ctx) {
   const count = useSignal(3);
 
-  console.log("Shared value " + ctx.state.shared);
+  console.log(`Shared value ${ctx.state.shared}`);
 
   return (
     <div class="px-4 py-8 mx-auto fresh-gradient min-h-screen">
@@ -23,10 +24,14 @@ export default define.page(function Home(ctx) {
         />
         <h1 class="text-4xl font-bold">Welcome to Fresh</h1>
         <p class="my-4">
-          Try updating this message in the
-          <code class="mx-2">./routes/index.tsx</code> file, and refresh.
+          Добро пожаловать в MiniApp с аутентификацией через Telegram!
         </p>
-        <Counter count={count} />
+        <div class="w-full max-w-md">
+          <UserProfile />
+        </div>
+        <div class="mt-8">
+          <Counter count={count} />
+        </div>
       </div>
     </div>
   );
