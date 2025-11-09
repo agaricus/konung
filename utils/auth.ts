@@ -1,5 +1,3 @@
-/// <reference lib="deno.unstable" />
-
 export interface User {
   id: number;
   name: string;
@@ -22,27 +20,19 @@ export interface AuthState {
   isAuthenticated: boolean;
 }
 
-export class AuthManager {
-  private kv: Deno.Kv | null = null;
+// Bot session data interface
+export interface BotSessionData {
+  authenticated: boolean;
+  userId: number | null;
+  userName?: string;
+  userAge?: number;
+}
 
-  constructor() {
-    this.initKv();
-  }
-
-  private async initKv() {
-    this.kv = await Deno.openKv();
-  }
-
-  private async getKv(): Promise<Deno.Kv> {
-    if (!this.kv) {
-      this.kv = await Deno.openKv();
-    }
-    return this.kv;
-  }
-
+// Session manager for web authentication
+export class BotSessionManager {
   async validateSession(token: string): Promise<AuthState> {
     try {
-      const kv = await this.getKv();
+      const kv = await Deno.openKv();
 
       // Получаем сессию
       const sessionResult = await kv.get<Session>(["sessions", token]);
@@ -76,12 +66,12 @@ export class AuthManager {
   }
 
   async revokeSession(token: string): Promise<void> {
-    const kv = await this.getKv();
+    const kv = await Deno.openKv();
     await kv.delete(["sessions", token]);
   }
 
   async getUserSessions(userId: number): Promise<Session[]> {
-    const kv = await this.getKv();
+    const kv = await Deno.openKv();
     const sessions: Session[] = [];
     const iter = kv.list<Session>({ prefix: ["sessions"] });
 
@@ -95,7 +85,7 @@ export class AuthManager {
   }
 
   async cleanupExpiredSessions(): Promise<void> {
-    const kv = await this.getKv();
+    const kv = await Deno.openKv();
     const iter = kv.list<Session>({ prefix: ["sessions"] });
     const now = new Date();
 
@@ -107,4 +97,5 @@ export class AuthManager {
   }
 }
 
-export const authManager = new AuthManager();
+export const botSessionManager = new BotSessionManager();
+export const authManager = botSessionManager; // Backward compatibility

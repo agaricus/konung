@@ -1,6 +1,6 @@
 import { useSignal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
-import { type AuthState } from "@/utils/auth.ts";
+import type { AuthState } from "@/utils/auth.ts";
 
 export function useAuth() {
   const authState = useSignal<AuthState>({

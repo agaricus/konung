@@ -1,5 +1,5 @@
 {
-  "nodeModulesDir": "manual",
+  "nodeModulesDir": "auto",
   "tasks": {
     "check": "deno fmt --check . && deno lint . && deno check",
     "dev": "deno run -A --unstable-kv npm:vite",
@@ -24,6 +24,8 @@
     "@/": "./",
     "@gramio/core": "jsr:@gramio/core@^0.1.5",
     "@gramio/scenes": "jsr:@gramio/scenes@^0.3.4",
+    "@gramio/session": "jsr:@gramio/session@^0.1.6",
+    "@gramio/storage": "jsr:@gramio/storage@^1.0.0",
     "@zod/zod": "jsr:@zod/zod@^4.1.12",
     "fresh": "jsr:@fresh/core@^2.1.4",
     "preact": "npm:preact@^10.27.2",

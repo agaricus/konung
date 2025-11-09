@@ -20,3 +20,18 @@
 - **Styling**: Tailwind CSS utility classes
 - **Formatting**: Deno formatter (auto-applied via `deno task check`)
 - **Error handling**: Standard try/catch; avoid console.log in production code
+
+## Session Management
+
+- **Bot Sessions**: Manual implementation using DenoKvStorage adapter
+- **Web Sessions**: Token-based authentication with 24-hour expiry
+- **Storage**: Deno KV with separate prefixes for bot and web sessions
+- **Bot Commands**: `/start`, `/auth`, `/profile`, `/logout`, `/menu`
+- **Session Functions**: `getBotSession()`, `setBotSession()`, `clearBotSession()`
+
+## Package Status
+
+- **@gramio/core**: v0.1.5 (active)
+- **@gramio/scenes**: v0.3.4 (active) 
+- **@gramio/session**: v0.1.6 (installed but not used due to version conflicts)
+- **Manual Sessions**: Fully functional replacement for @gramio/session
