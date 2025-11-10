@@ -1,4 +1,4 @@
-import { define } from "@/utils.ts";
+import { define } from "@/utils/index.ts";
 import { authManager } from "@/utils/auth.ts";
 
 export const handler = define.handlers({

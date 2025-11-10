@@ -1,6 +1,6 @@
 import { useSignal } from "@preact/signals";
 import { Head } from "fresh/runtime";
-import { define } from "@/utils.ts";
+import { define } from "@/utils/index.ts";
 import Counter from "@/islands/Counter.tsx";
 import UserProfile from "@/islands/UserProfile.tsx";
 

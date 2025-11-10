@@ -1,4 +1,4 @@
-import { define } from "@/utils.ts";
+import { define } from "@/utils/index.ts";
 import { Head } from "fresh/runtime";
 import MiniApp from "@/islands/MiniApp.tsx";
 

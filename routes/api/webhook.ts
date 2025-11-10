@@ -1,4 +1,4 @@
-import { define } from "@/utils.ts";
+import { define } from "@/utils/index.ts";
 import { bot as _bot } from "@/bot.ts";
 
 // Обработчик вебхука для Telegram

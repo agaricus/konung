@@ -1,5 +1,3 @@
-/// <reference lib="deno.unstable" />
-
 import type { Storage } from "@gramio/storage";
 
 export class DenoKvStorage implements Storage {
